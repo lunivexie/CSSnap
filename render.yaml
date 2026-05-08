@@ -1,0 +1,19 @@
+services:
+  # El servidor de Socket.io y Node.js
+  - type: web
+    name: cssnap-server
+    env: node
+    plan: free
+    region: oregon
+    rootDir: server
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 3001
+      - key: SUPABASE_URL
+        sync: false # Render te pedirá este valor al desplegar
+      - key: SUPABASE_ANON_KEY
+        sync: false # Render te pedirá este valor al desplegar
