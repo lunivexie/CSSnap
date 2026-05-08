@@ -10,7 +10,7 @@ if (!supabaseUrl || !supabaseKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseKey, {
   realtime: {
-    transport: ws,
+    transport: ws as any,
   },
   auth: {
     persistSession: false // Recommended for server-side
