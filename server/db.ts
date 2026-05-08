@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import ws from 'ws';
 
 const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_ANON_KEY || '';
@@ -7,7 +8,14 @@ if (!supabaseUrl || !supabaseKey) {
   console.warn("SUPABASE_URL or SUPABASE_ANON_KEY missing. DB will not function in production.");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseKey, {
+  realtime: {
+    transport: ws,
+  },
+  auth: {
+    persistSession: false // Recommended for server-side
+  }
+});
 
 export interface User {
   nickname: string;
