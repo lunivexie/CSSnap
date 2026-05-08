@@ -6,6 +6,8 @@ import { scoreCSS } from './cssScorer';
 import { getUser, updateUserXP, saveMatch } from './db';
 import { TARGETS } from '../client/src/utils/constants';
 
+console.log('--- SYSTEM_BOOT_SEQUENCE_INITIATED ---');
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
